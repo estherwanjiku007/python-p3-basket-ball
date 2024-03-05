@@ -182,3 +182,149 @@ def game_dict():
             ]
         }
     }
+game_dict()
+def num_points_per_game(player_name):       
+  #  my_players-names=[]
+    match_points=0
+    all_player_names=[]
+    all_players_points=[]
+    list_player_names1=game_dict()["home"]["players"]
+    list_player_names2=game_dict()["away"]["players"]
+    list_player_points1=game_dict()["home"]["players"]
+    list_player_point2=game_dict()["away"]["players"]
+    for a in range(0,len(list_player_names1)):
+        all_player_names.append(list_player_names1[a]["name"])
+        all_player_names.append(list_player_names2[a]["name"])
+        all_players_points.append(list_player_points1[a]["points_per_game"])
+        all_players_points.append(list_player_point2[a]["points_per_game"])
+    for b in range(0,len(all_player_names)):
+       if all_player_names[b]==player_name:
+        match_points+= all_players_points[b]
+       # print(match_points)
+    return match_points
+result=num_points_per_game("Rui Hachimura")
+
+def player_age(player_name):
+   match_age=0
+   all_players_name=[]
+   all_playres_ages=[]
+   list_all_players1=game_dict()["home"]["players"]
+   list_all_players2=game_dict()["away"]["players"]
+   list_all_ages1=game_dict()["home"]["players"]
+   list_all_ages2=game_dict()["away"]["players"]
+   for c in range(0,len(list_all_players1)):
+      all_players_name.append(list_all_players1[c]["name"])
+      all_players_name.append(list_all_players2[c]["name"])
+      all_playres_ages.append(list_all_ages1[c]["age"])
+      all_playres_ages.append(list_all_ages2[c]["age"])
+      
+   for d in range(0,len(all_playres_ages)):
+      if all_players_name[d]==player_name:
+         match_age+=all_playres_ages[d]
+        # print(match_age)
+   return match_age
+player_age("Kentavious Caldwell-Pope")
+def team_colors(team_name):
+   all_new_colors=[]
+   all_names=[]
+   all_colors1=[]
+   all_colors=game_dict()["home"]["colors"]
+   all_colors2=game_dict()["away"]["colors"]
+   all_colors1.append(all_colors)
+   all_colors1.append(all_colors2) 
+   all_team_names=game_dict()["home"]["team_name"]
+   all_team_names2=game_dict()["away"]["team_name"]  
+   all_names.append(all_team_names)
+   all_names.append(all_team_names2) 
+   for c in range(0,len(all_names)):    
+      if all_names[c]==team_name:
+         all_new_colors.append(all_colors1[c])
+         #print(all_new_colors)
+   return all_new_colors
+result=team_colors("Washington Wizards")
+def team_names():
+   all_teams=[]
+   team_name1=game_dict()["home"]["team_name"]
+   team_name2=game_dict()["away"]["team_name"]
+   all_teams.append(team_name1)
+   all_teams.append(team_name2)
+   return all_teams
+team_names()
+def player_numbers(a_team):
+   match_teams=[] 
+   all_teams=[] 
+   all_the_teams=[]
+   list_players1=game_dict()["home"]["players"]
+   list_players2=game_dict()["away"]["players"]
+   all_players=game_dict()["home"]["team_name"]
+   player_stats2=game_dict()["away"]["team_name"]
+   all_the_teams.append(all_players)
+   all_the_teams.append(player_stats2)
+   all_teams.append(list_players1)
+   all_teams.append(list_players2)
+   for t in range(0,len(all_the_teams)):
+      if all_the_teams[t]==a_team:
+         for u in range(0,len(list_players1)):
+          match_teams.append( all_teams[t][u]["number"])
+          print(match_teams)
+   return match_teams
+  # print(all_teams[0][1]["number"])
+   #(list_players1[1]["number"])
+#    for e in range(0,len(all_the_teams)):
+#       if all_the_teams[e]["team_name"]==a_team:
+#          print(all_the_teams[e]["players"]["number"])
+
+my_result=player_numbers("Washington Wizards")
+def  player_stats(player_name):   
+  # all_players_stats=0
+   
+   pass
+#    for d in range(0,len(all_players)):
+#       if all_players[d]["name"]==player_name:
+#         return player_stats2[d]
+# result3=player_stats("Darius Garland")
+
+def average_rebounds_by_shoe_brand():
+   brands=[]
+   all_new_brands=[]
+   all_brands=game_dict()["home"]["players"]  
+   total_nike_bounds=[]
+   total_Adidas_bounds=[]
+   total_jordan=[]
+   total_puma=[]
+   for e in range(0,len(all_brands)):      
+       brands.append(all_brands[e]["shoe_brand"]) 
+      # print(brands)  
+   for f in range(0,len(brands)-1):      
+      if brands[f] in brands[f+1]:
+         continue
+      else:        
+         all_new_brands.append(brands[f])
+         #print(all_new_brands)
+         all_new_brands2=game_dict()["home"]["players"]
+         #print(all_new_brands2)
+      for  l in range(0,len(all_new_brands2)):
+      # print(l)
+       the_brands2=[]
+       all_rebounds2=[]       
+       all_rebounds=game_dict()["home"]["players"][l][ "rebounds_per_game"]
+       the_brands=game_dict()["home"]["players"][l]["shoe_brand"]
+       all_rebounds2.append(all_rebounds)
+       the_brands2.append(the_brands)
+     #  print(all_rebounds)        
+#         if the_brands2[l]=="Adidas":
+#              #print( game_dict()["home"]["players"][l])
+#              total_Adidas_bounds.append(all_rebounds2[l])
+#         elif the_brands=="Nike":
+#              total_nike_bounds.append(all_rebounds2[l])
+#              #print(total_nike_bounds)
+#             # print(total_Adidas_bounds)
+#         elif the_brands=="Jordan":
+#              total_jordan.append(all_rebounds2[l])
+#             # print(total_jordan)
+#         elif the_brands=="Puma":
+#              total_puma.append(all_rebounds2[l])
+#             # print(total_jordan)
+#         else:break
+all_result=average_rebounds_by_shoe_brand()
+#print(all_result)

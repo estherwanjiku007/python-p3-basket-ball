@@ -200,7 +200,7 @@ def num_points_per_game(player_name):
     for b in range(0,len(all_player_names)):
        if all_player_names[b]==player_name:
         match_points+= all_players_points[b]
-       # print(match_points)
+      #  print(match_points)
     return match_points
 result=num_points_per_game("Rui Hachimura")
 
@@ -228,18 +228,19 @@ def team_colors(team_name):
    all_new_colors=[]
    all_names=[]
    all_colors1=[]
-   all_colors=game_dict()["home"]["colors"]
-   all_colors2=game_dict()["away"]["colors"]
+   all_colors=game_dict()["home"]["colors"]#an array of colors for the home
+   all_colors2=game_dict()["away"]["colors"]#an array of colors for the away
    all_colors1.append(all_colors)
-   all_colors1.append(all_colors2) 
+   all_colors1.append(all_colors2) #An array of all the colors
    all_team_names=game_dict()["home"]["team_name"]
    all_team_names2=game_dict()["away"]["team_name"]  
    all_names.append(all_team_names)
    all_names.append(all_team_names2) 
    for c in range(0,len(all_names)):    
       if all_names[c]==team_name:
-         all_new_colors.append(all_colors1[c])
-         #print(all_new_colors)
+         for u in range(0,len(all_colors1[c])):
+          all_new_colors.append(all_colors1[c][u])
+        # print(all_new_colors)
    return all_new_colors
 result=team_colors("Washington Wizards")
 def team_names():
@@ -251,7 +252,7 @@ def team_names():
    return all_teams
 team_names()
 def player_numbers(a_team):
-   match_teams=[] 
+   match_points=[] 
    all_teams=[] 
    all_the_teams=[]
    list_players1=game_dict()["home"]["players"]
@@ -265,24 +266,26 @@ def player_numbers(a_team):
    for t in range(0,len(all_the_teams)):
       if all_the_teams[t]==a_team:
          for u in range(0,len(list_players1)):
-          match_teams.append( all_teams[t][u]["number"])
-          print(match_teams)
-   return match_teams
-  # print(all_teams[0][1]["number"])
-   #(list_players1[1]["number"])
-#    for e in range(0,len(all_the_teams)):
-#       if all_the_teams[e]["team_name"]==a_team:
-#          print(all_the_teams[e]["players"]["number"])
-
+          match_points.append( all_teams[t][u]["number"])
+          print(match_points)
+   return match_points  
 my_result=player_numbers("Washington Wizards")
-def  player_stats(player_name):   
-  # all_players_stats=0
-   
-   pass
-#    for d in range(0,len(all_players)):
-#       if all_players[d]["name"]==player_name:
-#         return player_stats2[d]
-# result3=player_stats("Darius Garland")
+def  player_stats(player_name): 
+    matchingPlayer_stats={}   
+    total_players=[]
+    player_names1=game_dict()["home"]["players"]
+    player_name2=game_dict()["away"]["players"]
+    
+    for f in range(0,len(player_names1)):
+       total_players.append(player_names1[f])
+       total_players.append(player_name2[f])
+    for g in range(0,len(total_players)):
+       if total_players[g]["name"]==player_name:
+         # print(total_players[g])
+          matchingPlayer_stats.update(total_players[g])
+         # print(matchingPlayer_stats)
+    return matchingPlayer_stats
+result3=player_stats("Darius Garland")
 
 def average_rebounds_by_shoe_brand():
    brands=[]

@@ -200,7 +200,7 @@ def num_points_per_game(player_name):
     for b in range(0,len(all_player_names)):
        if all_player_names[b]==player_name:
         match_points+= all_players_points[b]
-      #  print(match_points)
+       # print(match_points)
     return match_points
 result=num_points_per_game("Rui Hachimura")
 
@@ -221,9 +221,9 @@ def player_age(player_name):
    for d in range(0,len(all_playres_ages)):
       if all_players_name[d]==player_name:
          match_age+=all_playres_ages[d]
-        # print(match_age)
+       #  print(all_playres_ages[d])
    return match_age
-player_age("Kentavious Caldwell-Pope")
+player_age("Cleveland Cavaliers")
 def team_colors(team_name):
    all_new_colors=[]
    all_names=[]
@@ -240,7 +240,7 @@ def team_colors(team_name):
       if all_names[c]==team_name:
          for u in range(0,len(all_colors1[c])):
           all_new_colors.append(all_colors1[c][u])
-        # print(all_new_colors)
+         #print(all_new_colors)
    return all_new_colors
 result=team_colors("Washington Wizards")
 def team_names():
@@ -267,7 +267,7 @@ def player_numbers(a_team):
       if all_the_teams[t]==a_team:
          for u in range(0,len(list_players1)):
           match_points.append( all_teams[t][u]["number"])
-          print(match_points)
+#print(match_points)
    return match_points  
 my_result=player_numbers("Washington Wizards")
 def  player_stats(player_name): 
@@ -287,47 +287,119 @@ def  player_stats(player_name):
     return matchingPlayer_stats
 result3=player_stats("Darius Garland")
 
+
 def average_rebounds_by_shoe_brand():
-   brands=[]
-   all_new_brands=[]
-   all_brands=game_dict()["home"]["players"]  
-   total_nike_bounds=[]
-   total_Adidas_bounds=[]
-   total_jordan=[]
-   total_puma=[]
-   for e in range(0,len(all_brands)):      
-       brands.append(all_brands[e]["shoe_brand"]) 
-      # print(brands)  
-   for f in range(0,len(brands)-1):      
-      if brands[f] in brands[f+1]:
-         continue
-      else:        
-         all_new_brands.append(brands[f])
-         #print(all_new_brands)
-         all_new_brands2=game_dict()["home"]["players"]
-         #print(all_new_brands2)
-      for  l in range(0,len(all_new_brands2)):
-      # print(l)
-       the_brands2=[]
-       all_rebounds2=[]       
-       all_rebounds=game_dict()["home"]["players"][l][ "rebounds_per_game"]
-       the_brands=game_dict()["home"]["players"][l]["shoe_brand"]
-       all_rebounds2.append(all_rebounds)
-       the_brands2.append(the_brands)
-     #  print(all_rebounds)        
-#         if the_brands2[l]=="Adidas":
-#              #print( game_dict()["home"]["players"][l])
-#              total_Adidas_bounds.append(all_rebounds2[l])
-#         elif the_brands=="Nike":
-#              total_nike_bounds.append(all_rebounds2[l])
-#              #print(total_nike_bounds)
-#             # print(total_Adidas_bounds)
-#         elif the_brands=="Jordan":
-#              total_jordan.append(all_rebounds2[l])
-#             # print(total_jordan)
-#         elif the_brands=="Puma":
-#              total_puma.append(all_rebounds2[l])
-#             # print(total_jordan)
-#         else:break
+    players=[]
+    all_players=[]
+    all_players1=game_dict()["home"]["players"]
+    all_players2=game_dict()["away"]["players"]
+    all_players.append(all_players1)
+    all_players.append(all_players2)
+    for a in range(len(all_players)):         
+        for b in range(len(all_players[a])):
+           players.append(all_players[a][b])
+          # print(players)
+    shoe_brand_rebounds = {}
+    shoe_brand_count = {}
+    for c in range(len(players)):
+    #for player in players:
+        shoe_brand = players[c]["shoe_brand"]
+        rebounds = players[c]["rebounds_per_game"]
+       # print(shoe_brand)
+       # print(rebounds)
+
+        if shoe_brand in shoe_brand_rebounds:
+            shoe_brand_rebounds[shoe_brand] += rebounds
+            shoe_brand_count[shoe_brand] += 1
+        else:
+            shoe_brand_rebounds[shoe_brand] = rebounds
+            shoe_brand_count[shoe_brand] = 1
+
+    for brand, rebounds in shoe_brand_rebounds.items():
+        count = shoe_brand_count[brand]
+        average_rebounds = rebounds / count
+        print(f"{brand}: {average_rebounds:>5.2f}")
+
+# def average_rebounds_by_shoe_brand():
+#     brands=[] #hold all the brands
+#     all_data={}
+#     total_nike=0
+#     total_puma=0
+#     total_jordan=0
+#     total_adidas=0
+#     matching_brands=[]
+#     total_matching_lists=[] #holds the all the nfo of all the players
+#     total_matching_lists2=[]   
+#     all_home_players=game_dict()["home"]["players"]
+#     all_away_players=game_dict()["away"]["players"]
+#     total_matching_lists2.append(all_home_players)
+#     total_matching_lists2.append(all_away_players)
+#     total_brands=[]
+#     for a in range(0,len(all_home_players)):
+#         total_brands.append(all_home_players[a]["shoe_brand"])
+#         total_brands.append(all_away_players[a]["shoe_brand"])
+#         total_matching_lists.append(all_away_players[a])
+#         total_matching_lists.append(all_home_players[a])
+#         #print(total_matching_lists)
+#     for b in range(0,len(total_brands)-1):
+#            new_brands=[]  
+#            new_brands.append(game_dict()["home"]) 
+#            new_brands.append(game_dict()['away'])    
+#           # print(new_brands)
+#            if total_brands[b]  in total_brands[b+1]:
+#               continue
+#            elif total_brands[b] not in total_brands[b+1] :
+#               brands.append(total_brands[b+1])
+#               print(brands)
+#     # for i in range(len(brands)):
+      
+#     #          for e in range(len(new_brands)):
+#     #             for f in range(len(new_brands[e]["players"])):
+#     #               # for g in range(len(new_brands[e]["players"][f])):
+#     #                 all_data[brands[i]]=[new_brands[e][f]['rebounds_per_game']] #if new_brands[e]["players"][f]["shoe_brand"]==brands[i] else None]
+#     #                 print(all_data)
+#     #         #  if brands[i]==total_matching_lists2[c][d]:
+#             #     print(total_matching_lists2[c][d]["name"])
+#  #   print(total_brands)
+              
+   
+# #     elif total_brands[b] not in brands[e]:          
+#     #        brands.append(total_brands[b+1])
+#     #     # for c in range(len(total_brands)-1,-1,-1):
+#     #    for e in range(0,len(brands)):
+#     #     if total_brands[b] in total_brands[b+1]:
+#     #      continue
+#            # print(brands)
+#     # for c in range(0,len(brands)):
+#     #     for d in range(0,len(total_matching_lists)):
+#     #      if brands[c]==total_matching_lists[d]["shoe_brand"]:
+#     #        # print(total_matching_lists[d]["name"]) 
+#     #         pass
+#         # brands[c].append(total_matching_lists[d]["shoe_brand"])
+#             # matching_brands[c].append(total_matching_lists[d]["shoe_brand"]) 
+#             #print(brands)          
+# #  all_new_brands=[]
+# #    all_brands=game_dict()["home"]["players"] 
+# #    all_brands2=game_dict()["away"]["players"]
+# #    total_nike_bounds=[]
+# #    total_Adidas_bounds=[]
+# #    total_jordan=[]
+# #    total_puma=[]
+# #   
+# #    
+# #       if the_brands2[l]=="Adidas":
+# #              print( game_dict()["home"]["players"][l])
+# #              total_Adidas_bounds.append(all_rebounds2[l])
+# #       elif the_brands=="Nike":
+# #              total_nike_bounds.append(all_rebounds2[l])
+# #              print(total_nike_bounds)
+# #              print(total_Adidas_bounds)
+# #       elif the_brands=="Jordan":
+# #              total_jordan.append(all_rebounds2[l])
+# #             # print(total_jordan)
+# #       elif the_brands=="Puma":
+# #              total_puma.append(all_rebounds2[l])
+# #              print(total_jordan)
+# #        # else:break
 all_result=average_rebounds_by_shoe_brand()
 #print(all_result)
